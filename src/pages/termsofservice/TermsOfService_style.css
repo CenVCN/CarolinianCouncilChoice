@@ -109,21 +109,16 @@ nav {
     gap: 10px; 
 }
 
-.mainWrapper {
+.mainWrapper{
     width: 100%;
-    height: 1600px;
+    height: 1200px;
     overflow: hidden;
     justify-content: center;
     text-align: center;
     position: relative;
-    display: block;
+    display: flex;
     align-items: center;
-}
-
-.mainWrapper img {
-    width: 1000px;
-    margin: 0;
-    /* margin-bottom: 900px; */
+    bottom: 50px;
 }
 
 /* Nav Bar */
@@ -231,13 +226,17 @@ nav {
     gap: 10px; 
 }
 
-img.Backgroundimg{
+.mainWrapper img.Backgroundimg {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     object-fit: cover; 
     object-position: top;
     opacity: 0.1; 
-    padding-bottom: 20%;
+    position: absolute;
 }
 
 img.USClogo {
@@ -317,4 +316,12 @@ img.USClogo {
 .socialIcons a:hover i {
     color: white;
     transition: 0.3s;
+}
+
+.content{
+    text-align: justify;
+    text-justify: inter-word;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: .5%;
 }
