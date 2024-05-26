@@ -406,7 +406,8 @@ img.Backgroundimg{
 }
 
 .menuTab:hover{
-    background-color: #7ED7A1;
+    background-color: #FBBF16;
+    border: 2px solid black;
 }
 
 .midBar{
