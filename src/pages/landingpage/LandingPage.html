@@ -20,13 +20,17 @@
         <ul class = "rightLinks">
             <!-- </div> -->
             <!-- <div class = "rightLinks"> -->
-                <li><a href="LandingPage.html">Home</a></li>
-                <li><a href="..\aboutus\AboutUs.html">About</a></li>
-                <li><a href="..\contactus\ContactUs.html">Contact Us</a></li>
-                <li><a href="..\faq\FAQ.html">FAQ</a></li>
+                <li><a href="LandingPage.html" class = "navRedirect">Home</a></li>
+                <li><a href="..\aboutus\AboutUs.html" class = "navRedirect">About</a></li>
+                <li><a href="..\contactus\ContactUs.html" class = "navRedirect">Contact Us</a></li>
+                <li><a href="..\faq\FAQ.html" class = "navRedirect">FAQ</a></li>
                 <li>
-                    <button class="LoginBtn">Log In</button>
-                    <button class="RegisterBtn">Register</button>
+                    <a href = "..\signin\SigunIn.html" class = "navButton">
+                        <button class="LoginBtn">Log In</button>
+                    </a>
+                    <a href = "..\signup\SigunUp.html" class = "navButton">
+                        <button class="RegisterBtn">Register</button>
+                    </a>
                 </li>
             <!-- </div> -->
         </ul> 
@@ -39,8 +43,10 @@
         <img class = "USClogo" src = "..\..\components\Images\Right USC Logo.png">
         <p class = "CCC">Carolinian Council Choice</p>
         <p class = "CCCDesc">An Online Voting System for Carolinians by Carolinians.</p>
-
-        <button class = "RegisterAsVoterBtn">Register as a Voter</button>
+        
+        <a href = "..\signup\SigunUp.html">
+            <button class = "RegisterAsVoterBtn">Register as a Voter</button>
+        </a>
     </div>
 
     <div class = "Midbox">
@@ -49,7 +55,9 @@
             <p class = "SignupText">SIGN UP</p>
             <p class = "SignupDesc">Create an account using your university email to be elligible to vote.</p>
 
-            <button class = "SignupRegisterBtn">Register as a Voter</button>
+            <a href = "..\signup\SigunUp.html">
+                <button class = "SignupRegisterBtn">Register as a Voter</button>
+            </a>
         </div>
         <div class = "Step2">
             <p class = "Step2Text">Step 2:</p>
