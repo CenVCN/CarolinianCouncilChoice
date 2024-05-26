@@ -322,13 +322,95 @@ img.Backgroundimg{
     position: absolute;
     height: 920px; /* Change the width to the desired height */
     width: 472px; /* Change the height to the desired width */
-    border: 2px solid black;
+    border: 0;
     top: 145px; 
     z-index: 2;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     transform: rotate(360deg);  /*idk why this works but it does*/
     background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding-top: 20px;
+}
+
+.userInfoSideBar {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.userPic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+.userInfo {
+    text-align: center;
+}
+
+.userInfoSideBar p {
+    margin: 5px 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.userInfoSideBar p.votingStatusTitle{
+    font-size: 50px;
+}
+
+
+
+.userInfo p:last-child {
+    margin-bottom: 0;
+}
+.menuSelect{
+    margin-top: 80px;
+    height: 352px;
+    width: 80%;
+
+    margin-bottom: 82px;
+}
+
+.menuTab{
+    height: 88px;
+    width: 100%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex; /* Add this */
+    align-items: center; /* Add this */
+    text-decoration: none; /* Add this line */
+    transition: background-color 0.3s ease; /* Add this line */
+}
+
+.menuTabLogo{
+    width: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menuTabTitle{
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.menuTab:hover{
+    background-color: #7ED7A1;
 }
 
 .midBar{
@@ -340,14 +422,60 @@ img.Backgroundimg{
     z-index: 3;
 }
 
-.ongoingElecBox{
+.ongoingElecBox {
     border-bottom: 2px solid yellow;
     width: 100%;
     height: 375px;
     border: 2px solid black;
     border-radius: 20px;
     background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
 }
+
+.midBoxHeader {
+    display: flex;
+    align-items: center;
+}
+
+.midBoxText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.newsAndUpdatesButton {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    background: #0D8F3F;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    top: 10px;
+    right: 20px;
+    border: 2px solid black;
+}
+
+.newsAndUpdatesButton:hover {
+    background-color: #FBBF16;
+}
+
 
 .liveResultsBox{
     margin-top: 40px;
@@ -356,7 +484,39 @@ img.Backgroundimg{
     width: 100%;
     height: 510px;
     background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
 }
+
+.electionResultsButton {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    background: #0D8F3F;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    top: 10px;
+    right: 20px;
+    border: 2px solid black;
+}
+
+.electionResultsButton:hover {
+    background-color: #FBBF16;
+}
+
 
 .electionTimeBox{
     margin-top: 40px;
@@ -365,6 +525,12 @@ img.Backgroundimg{
     width: 100%;
     height: 375px;
     background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 img.USClogo {
