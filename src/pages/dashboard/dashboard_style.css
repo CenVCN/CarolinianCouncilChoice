@@ -297,8 +297,6 @@ nav {
 .mainWrapper {
     width: 100%;
     height: 1600px;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -421,10 +419,8 @@ img.Backgroundimg{
 }
 
 .ongoingElecBox {
-    border-bottom: 2px solid yellow;
     width: 100%;
     height: 375px;
-    border: 2px solid black;
     border-radius: 20px;
     background-color: #11b35d;
     display: flex;
@@ -467,7 +463,6 @@ img.Backgroundimg{
     transition: background-color 0.3s ease;
     top: 10px;
     right: 20px;
-    border: 2px solid black;
 }
 
 .newsAndUpdatesButton:hover {
@@ -477,7 +472,6 @@ img.Backgroundimg{
 
 .liveResultsBox{
     margin-top: 40px;
-    border: 2px solid black;
     border-radius: 20px;
     width: 100%;
     height: 510px;
@@ -508,7 +502,6 @@ img.Backgroundimg{
     transition: background-color 0.3s ease;
     top: 10px;
     right: 20px;
-    border: 2px solid black;
 }
 
 .electionResultsButton:hover {
@@ -518,7 +511,6 @@ img.Backgroundimg{
 
 .electionTimeBox{
     margin-top: 40px;
-    border: 2px solid black;
     border-radius: 20px;
     width: 100%;
     height: 375px;
