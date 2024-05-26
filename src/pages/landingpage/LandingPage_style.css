@@ -32,7 +32,7 @@ nav {
 }
 
 /* Navbar link styling */
-.navBar a {
+.navBar a.navRedirect {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
@@ -50,13 +50,13 @@ nav {
 }
 
 /* Hover and focus styles */
-.navBar a:hover,
-.navBar a:focus {
+.navBar a.navRedirect:hover,
+.navBar a.navRedirect:focus {
     color: #FBBF16; /* Yellow color on hover/focus */
 }
 
-.navBar a:hover::after,
-.navBar a:focus::after {
+.navBar a.navRedirect:hover::after,
+.navBar a.navRedirect:focus::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -395,10 +395,12 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
-
-
+.FeatureBox > div:hover{
+    background: #FBBF16;
+}
 
 .FeatureBox div.Feature1 p.Feature1Text,
 .FeatureBox div.Feature2 p.Feature2Text,
