@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
     <div class = "mainWrapper">
@@ -47,9 +49,59 @@
                     </div>
                 </div>
             </form>
-            <button class = "createAccButton">Create Account</button>
+            <button class = "createAccButton" onclick="createAccount()">Create Account</button>
         </div>
      </div>
     </div>
+
+    <script type ="text/javascript">
+        const {createClient} = supabase; //createClient - a function provided by supabase, available once we created the script tag
+
+        const supabase_url = 'https://sqwozgbfzscbetdxgqin.supabase.co'
+        const supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNxd296Z2JmenNjYmV0ZHhncWluIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3MjczNzUsImV4cCI6MjAzMjMwMzM3NX0.TUfDeHyKa0ffOms8Agipn9HkZX5OQg9qufygi4E_f90'
+
+        const connection = createClient(supabase_url, supabase_key);
+
+        console.log(connection);
+
+        async function createAccount(){
+            try {
+                const firstName = document.getElementById('fname').value.trim();
+                const lastName = document.getElementById('lname').value.trim();
+                const uscEmail = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                // Basic data validation
+                if (!firstName || !lastName || !uscEmail || !password) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                // Hash and salt the password (recommended for security)
+                // const hashedPassword = await hashPassword(password);
+
+                const { data, error } = await connection.from('user').insert({
+                    firstName,
+                    lastName,
+                    uscEmail,
+                    password // Use the hashed password
+                });
+
+                if (error) {
+                    console.error(error);
+                    alert('Error creating account');
+                } else {
+                    console.log(data);
+                    alert('Account created successfully');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An unexpected error occurred');
+            }
+        }
+
+    
+    
+    </script>
 </body>
 </html>

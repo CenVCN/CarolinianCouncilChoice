@@ -7,7 +7,6 @@ html, body {
     box-sizing: border-box;
 }
 
-
 .mainWrapper {
     height: 100vh;
     width: 100%;
@@ -16,6 +15,7 @@ html, body {
     align-items: center;
     overflow: hidden;
     position: relative;
+    border: 2px solid black;
 }
 
 .mainWrapper img.Backgroundimg {
@@ -28,14 +28,17 @@ html, body {
     z-index: 0;
 }
 
-.leftDiv {
-    height: 100%;
-    width: 540px;
+
+.leftSection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
     z-index: 1;
 }
 
-.leftDiv p.CCC{
-    position: relative;
+
+.leftSection p.CCC {
     width: 50px;
     padding-left: 20px;
     font-family: 'Inter';
@@ -45,87 +48,88 @@ html, body {
     line-height: 91px;
     margin-bottom: 0;
     padding-top: 65px;
-
-    color: #000000;
 }
 
-.leftDiv p.CCCDesc{
-    position: relative;
-    padding-left: 30px;
-
+.leftSection p.CCCDesc {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    margin-bottom: 0;
+    margin: 0;
     color: #000000;
+    padding-left: 30px;
 }
 
 .mainWrapper img.SSClogo {
     position: absolute;
-    width: 471px;   
-    top: 397px;
+    width: 450px;   
+    top: 380px;
+    left: 20px;
     opacity: 0.3;
-    margin-left: 35px;
     z-index: 1;
+    padding-left: 30px;
+    
 }
 
-.rightDiv {
-    height: 100%;
-    width: 900px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
+.USClogo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 650px;
+    z-index: 3;
+    opacity: 0.3;
 }
 
-.signUpBox{
-    width: 100%;
-    height: 80%;
-    background-color: #00A950;
+.signInBox {
+    width: 630px;
+    height: 730px;
     border-radius: 20px;
+    z-index: 1;
+    background-color: #00A950;
+    position: absolute;
     display: flex;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
     flex-direction: column;
-    margin: 0;
+    /* align-items: center; */
+    padding: 40px;
+    box-sizing: border-box;
 }
 
-.signUpText{
-    padding-top: 65px;
+.signInText{
+    padding-top: 40px;
+    padding-left: 4px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 44px;
-    line-height: 77px;
+    font-size: 34px;
+    line-height: 37px;
     margin-bottom: 0px;
     color: #ffffff;
 }
 
-.signUpBox form {
-    display: block;
-    gap: 20px; /* Add some space between form elements */
-    align-items: center; /* Align items at the center horizontally */
+.signInDesc{
+    padding-left: 4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 0px;
+    color: #ffffff;
+    margin-bottom: 80px;
 }
 
-.form-row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    /* border: 2px solid black; */
-    float: left;
-    margin-left: 135px;
-    margin-top: 40px;
+form {
+    width: 100%;
 }
 
 .form-group {
-    width: 300px;
+    width: 100%;
     flex: 1; /* Make both form groups take equal width */
-    margin-right: 0px; /* Add some space between form groups */
+    margin-right: 50px; /* Add some space between form groups */
+}
+
+.form-group:last-child {
+    margin-right: 0; /* Remove margin-right for the last form group */
 }
 
 .form-group label {
@@ -135,7 +139,7 @@ html, body {
     
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     color: white;
@@ -147,7 +151,7 @@ html, body {
 
 .form-group input {
     width: 100%; /* Make input boxes take the full width of the form group */
-    padding: 8px;
+    padding: 9px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box; /* Include padding and border in the element's total width */
@@ -157,45 +161,65 @@ html, body {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    margin-bottom: 20px;
 }
 
 .form-column {
-    /* justify-content: center; */
     margin-bottom: 20px;
-    /* border: 2px solid black; */
-    /* float: left; */
-    margin-left: 135px;
-    width: 864px;
 }
 
 .form-group.full-width{
-    width: 85%;
+    width: 100%;
 }
 
-.createAccButton{
-    position: relative;
-    width: 260px;
-    height: 70px;
+.forgotPassText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
 
+.signInButton {
+    width: 100%;
+    height: 50px;
+    background: #FBBF16;
+    border: 0;
+    border-radius: 50px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
-    line-height: 24px;
-    background: #006630;
-    text-align: center;
-    color: white;
+    color: #000000;
     cursor: pointer;
-    border: 0px;
-
-    border-radius: 50px;
-
     transition: background-color 0.3s ease;
 }
 
-
-.signUpBox button.createAccButton:hover{
-    background-color: #FBBF16;
+.signInButton:hover{
+    background-color: #fff700;
 }
 
+.SignupRegisterBtn {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    background: #006630;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.SignupRegisterBtn:hover {
+    background-color: #FBBF16;
+}
