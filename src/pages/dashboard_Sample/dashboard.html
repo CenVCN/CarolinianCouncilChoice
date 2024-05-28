@@ -9,22 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 
 <body>
-    <nav class="navBar">
-        <ul class = "leftLinks">
-                <li><img src = "..\..\components\Images\LogoCCC.png" alt="Logo" class="navbar-logo"></li>
-                <li class="navbar-title">Carolinian Council Choice</li>
-        </ul>
-        <ul class = "rightLinks">
-                <li><a href="..\dashboard\dashboard.html">Dashboard</a></li>
-                <li><a href="..\aboutus\AboutUs.html">About</a></li>
-                <li><a href="..\contactus\ContactUs.html">Contact Us</a></li>
-                <li><a href="..\faq\FAQ.html">FAQ</a></li>
-        </ul> 
-    </nav>
 
     <div class = "mainWrapper">
         <img class = "Backgroundimg" src = "..\..\components\Images\White Background Green.png">
@@ -32,10 +21,10 @@
         <div class = "sideBar">
             <div class = "userInfoSideBar">
                 <div class = "userPic"></div>
-                <p class = "userName">[userNamePlaceHolder]</p>
-                <p class = "userType">[userTypePlaceHolder]</p>
+                <p class = "userName"></p>
+                <p class = "userType"></p>
                 <p class = "votingStatusTitle">Voting Status: </p>
-                <p class = "userVotingStatus">[userVotingStatusPlaceHolder]</p>
+                <p class = "userVotingStatus"></p>
             </div>
             <div class="menuSelect">
                 <a href="#dashboard" class="menuTab">
@@ -50,7 +39,7 @@
                     <img src="..\..\components\Images\Settings Logo.png" alt="SettingsLogo" class="menuTabLogo">
                     <p class="menuTabTitle">Settings</p>
                 </a>
-                <a href="..\pages\loginpage\login.html" class="menuTab">
+                <a href="..\loginpage\login.html" class="menuTab">
                     <img src="..\..\components\Images\Logout Logo.png" alt="LogoutLogo" class="menuTabLogo">
                     <p class="menuTabTitle">Log out</p>
                 </a>
@@ -168,6 +157,44 @@
                 }
             });
         });
+
+        const { createClient } = supabase;
+        const supabaseUrl = 'https://qbdvzhavzxgjdgctnzoe.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c';
+        const connection = createClient(supabaseUrl, supabaseKey);
+
+        window.addEventListener('load', async () => {
+            console.log('Page Loaded');
+
+            // Get the current user's email from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const uscEmail = urlParams.get('uscEmail');
+
+            console.log(uscEmail);
+
+            try {
+                // Fetch the user's information from the user_table
+                const { data: user, error } = await connection.from('user_table')
+                .select('firstName, lastName, userType, voteStatus')
+                .eq('uscEmail', uscEmail)
+                .single();
+
+                if (error) {
+                console.error(error);
+                alert('Error fetching user information. Please try again later.');
+                } else {
+                // Update the userInfoSideBar elements
+                document.querySelector('.userName').textContent = `${user.firstName} ${user.lastName}`;
+                document.querySelector('.userType').textContent = user.userType;
+                document.querySelector('.userVotingStatus').textContent = user.voteStatus;
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while fetching user information. Please try again later.');
+            }
+            });
+
+        
     </script>
 </body>
 </html>

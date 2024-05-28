@@ -99,22 +99,37 @@
                 }
 
                 try {
-                    const { data, error } = await connection.from('user_table').insert([
-                        {
-                            firstName: fname,
-                            lastName: lname,
-                            uscEmail: email,
-                            password: password,
-                            userType: userType, // Set the userType
-                            authStatus: 'Off' // Default value for authStatus
-                        }
-                    ]);
+                    const { user, error } = await connection.auth.signUp({
+                        email,
+                        password,
+                        data: {
+                            user: {
+                                firstName: fname,
+                                lastName: lname,
+                                userType: userType, // Set the userType
+                            },
+                        },
+                    });
 
                     if (error) {
-                        alert('Error inserting user: ' + error.message);
+                        alert('Error signing up: ' + error.message);
                     } else {
-                        alert('Signed Up Successfully!');
-                        window.location.href = '..\signin\SignIn.html'; // Redirect to signin page
+                        // Store user data in the user_table
+                        const { data: insertData, error: insertError } = await connection
+                            .from('user_table')
+                            .insert({
+                                firstNname: fname,
+                                lastName: lname,
+                                uscEmail: email,
+                                userType: userType,
+                            });
+
+                        if (insertError) {
+                            alert('Error storing user data: ' + insertError.message);
+                        } else {
+                            alert('Signed Up Successfully!');
+                            window.location.href = '../loginpage/login.html'; // Redirect to signin page
+                        }
                     }
                 } catch (err) {
                     alert('Unexpected error: ' + err.message);
