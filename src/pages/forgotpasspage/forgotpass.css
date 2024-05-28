@@ -46,8 +46,8 @@ padding:0px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 75px;
-    line-height: 91px;
+    font-size: 60px;
+    line-height: 80px;
     z-index: 1;
 
     color: #000000;
@@ -55,15 +55,15 @@ padding:0px;
 
 .CCC p.CCCDesc{
     position: absolute;
-    width: 534px;
+    width: 270px;
     height: 31px;
     top: 330px;
     z-index: 1;
-
+    margin-top:-1%;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 24px;
     margin-left: 15px;
 
