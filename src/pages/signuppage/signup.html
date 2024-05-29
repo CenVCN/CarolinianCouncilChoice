@@ -118,7 +118,7 @@
                         const { data: insertData, error: insertError } = await connection
                             .from('user_table')
                             .insert({
-                                firstNname: fname,
+                                firstName: fname,
                                 lastName: lname,
                                 uscEmail: email,
                                 userType: userType,
