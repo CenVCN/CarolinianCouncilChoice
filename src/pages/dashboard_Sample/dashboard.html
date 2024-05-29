@@ -71,7 +71,23 @@
     </section>
 
     <section id="vote" class="content">
-        <p>*Voting page</p>
+        <div class="vote-container">
+            <h1>Cast Your Vote</h1>
+    
+            <div class="party-lists">
+                <h2>Party Lists</h2>
+                <div id="party-list-container"></div>
+            </div>
+    
+            <div class="candidate-list">
+                <h2>Candidate List</h2>
+                <div id="candidate-list-container"></div>
+            </div>
+    
+            <div class="vote-button-container">
+                <button id="cast-vote-button">Cast Vote</button>
+            </div>
+        </div>
     </section>
 
     <section id="settings" class="content">
@@ -249,6 +265,122 @@
                     alert('An error occurred while updating auth status. Please try again later.');
                 }
             }
+
+            async function fetchPartyLists() {
+    try {
+        console.log('Fetching party lists...');
+        const { data, error } = await connection.from('parties').select('*');
+        if (error) throw error;
+
+        console.log('Party data:', data);
+
+        // Clear the party-list-container before populating it
+        const partyListContainer = document.getElementById('party-list-container');
+        partyListContainer.innerHTML = '';
+
+        // Populate the party-list-container with party names
+        data.forEach(party => {
+            const partyElement = document.createElement('div');
+            partyElement.textContent = party.partyname;
+            partyElement.addEventListener('click', () => {
+                selectedPartyId = party.partyid;
+                fetchCandidates(party.partyid);
+            });
+            partyListContainer.appendChild(partyElement);
+        });
+
+        console.log('Party lists fetched and displayed successfully.');
+    } catch (error) {
+        console.error('Error fetching party lists:', error);
+        alert('Error fetching party lists. Please try again later.');
+    }
+}
+
+async function fetchCandidates() {
+            try {
+                // Fetch candidates with their associated positions and party lists
+                const { data: candidates, error } = await connection
+                    .from('candidates')
+                    .select(`
+                        firstName,
+                        lastName,
+                        candidateDescription,
+                        positions (
+                            position_name
+                        ),
+                        parties (
+                            partyname
+                        )
+                    `);
+
+                if (error) throw error;
+
+                // Update the candidate container with the fetched data
+                const candidateContainer = document.getElementById('candidate-list-container');
+                candidateContainer.innerHTML = '';
+                candidates.forEach(candidate => {
+                    const candidateElement = document.createElement('div');
+                    candidateElement.innerHTML = `
+                        <div>
+                            <span>${candidate.firstName} ${candidate.lastName}</span>
+                            <span> - ${candidate.positions.position_name}</span>
+                            <span> (Party: ${candidate.parties.partyname})</span>
+                        </div>
+                        <p>${candidate.candidateDescription}</p>
+                    `;
+                    candidateContainer.appendChild(candidateElement);
+                });
+            } catch (error) {
+                console.error('Error fetching candidates:', error);
+                alert('Error fetching candidates. Please try again later.');
+            }
+        }
+// Select a candidate
+function selectCandidate(candidateId) {
+    // Update the selected candidate ID
+    selectedCandidateId = candidateId;
+
+    // Highlight the selected candidate
+    const candidateElements = document.querySelectorAll('#candidate-list-container > div');
+    candidateElements.forEach(element => {
+        element.classList.remove('selected');
+    });
+    const selectedCandidateElement = document.querySelector(`#candidate-list-container > div:nth-child(${candidateId})`);
+    selectedCandidateElement.classList.add('selected');
+}
+
+// Cast the vote
+async function castVote() {
+    try {
+        // Check if a party and candidate are selected
+        if (selectedPartyId === null || selectedCandidateId === null) {
+            alert('Please select a party and a candidate to cast your vote.');
+            return;
+        }
+
+        // Get the current user's email from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const uscEmail = urlParams.get('uscEmail');
+
+        // Insert the vote into the database
+        const { data, error } = await connection.from('votes').insert({
+            uscEmail: uscEmail,
+            partyid: selectedPartyId,
+            candidateid: selectedCandidateId
+        });
+
+        if (error) throw error;
+
+        alert('Your vote has been cast successfully!');
+    } catch (error) {
+        console.error('Error casting vote:', error);
+        alert('An error occurred while casting your vote. Please try again later.');
+    }
+}
+
+// Run the functions when the page is loaded
+window.addEventListener("load", fetchPartyLists);
+document.addEventListener('DOMContentLoaded', fetchCandidates);
     </script>
 </body>
 </html>

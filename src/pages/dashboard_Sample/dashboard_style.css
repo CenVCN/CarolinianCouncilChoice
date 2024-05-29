@@ -495,3 +495,39 @@ img.USClogo {
 .accBox button:hover {
     background-color: #FBBF16;
 }
+
+.candidate-item {
+    margin-left: 680px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.candidate-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.candidate-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.candidate-item button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
