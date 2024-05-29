@@ -67,34 +67,53 @@
 
                 try {
                     const { user, error } = await connection.auth.signInWithPassword({
-                    email,
-                    password,
+                        email,
+                        password,
                     });
 
                     if (error) {
-                    console.error(error);
-                    alert('Error signing in. Please check your email and password.');
+                        console.error(error);
+                        alert('Error signing in. Please check your email and password.');
                     } else {
-                    // Update the authStatus column in the user_table
-                    const { data, error: updateError } = await connection.from('user_table')
-                        .update({ authStatus: 'On' })
-                        .eq('uscEmail', email)
-                        .single();
+                        // Update the authStatus to 'On' for all users
+                        const { data: updateData, updateError } = await connection.from('user_table')
+                            .update({ authStatus: 'On' })
+                            .eq('uscEmail', email)
+                            .single();
 
-                    if (updateError) {
-                        console.error(updateError);
-                        alert('Error updating user status. Please try again later.');
-                    } else {
-                        alert('Successfully Signed in!');
-                        // Redirect the user to the dashboard
-                        window.location.href = `../dashboard_Sample/dashboard.html?uscEmail=${email}`;
-                    }
+                        if (updateError) {
+                            console.error(updateError);
+                            alert('Error updating user status. Please try again later.');
+                        } else {
+                            // Fetch the user data to check userType
+                            const { data: userData, error: userError } = await connection.from('user_table')
+                                .select('userType')
+                                .eq('uscEmail', email)
+                                .single();
+
+                            if (userError) {
+                                console.error(userError);
+                                alert('Error fetching user data. Please try again later.');
+                            } else {
+                                const userType = userData.userType;
+
+                                if (userType === 'Admin') {
+                                    alert('Successfully Signed in as Admin!');
+                                    // Redirect the admin to the adminDashboard
+                                    window.location.href = `../admindashboard/adminDashboard.html?uscEmail=${email}`;
+                                } else {
+                                    alert('Successfully Signed in!');
+                                    // Redirect the user to the userDashboard
+                                    window.location.href = `../dashboard_Sample/dashboard.html?uscEmail=${email}`;
+                                }
+                            }
+                        }
                     }
                 } catch (error) {
                     console.error(error);
                     alert('An error occurred while signing in. Please try again later.');
                 }
-                });
+            });
         </script>
 </body>
 </html>

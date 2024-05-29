@@ -39,7 +39,7 @@
                     <img src="..\..\components\Images\Settings Logo.png" alt="SettingsLogo" class="menuTabLogo">
                     <p class="menuTabTitle">Settings</p>
                 </a>
-                <a href="..\loginpage\login.html" class="menuTab">
+                <a href="#" class="menuTab" id="logoutLink">
                     <img src="..\..\components\Images\Logout Logo.png" alt="LogoutLogo" class="menuTabLogo">
                     <p class="menuTabTitle">Log out</p>
                 </a>
@@ -194,7 +194,61 @@
             }
             });
 
-        
+            window.addEventListener('load', function() {
+                console.log('Page Loaded');
+                const navLinks = document.querySelectorAll('.navBar a');
+                const currentPage = window.location.href;
+                const homeLink = document.querySelector('.navBar a[href="LandingPage.html"]');
+                const path = window.location.pathname.replace(/^\//, '');
+                const isLandingPage = path === '' || path.endsWith('LandingPage.html');
+
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    link.classList.remove('current-page');
+                    if (isLandingPage && link === homeLink) {
+                        link.classList.add('current-page');
+                    } else if (currentPage.includes(linkHref)) {
+                        link.classList.add('current-page');
+                    }
+                });
+
+                setupLogout(); // Call the setupLogout function
+            });
+
+
+            function setupLogout() {
+                const logoutLink = document.getElementById('logoutLink');
+                if (logoutLink) {
+                    logoutLink.addEventListener('click', handleLogout);
+                }
+            }
+
+            async function handleLogout(e) {
+                e.preventDefault(); // Prevent the default link behavior
+
+                // Get the current user's email from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const uscEmail = urlParams.get('uscEmail');
+
+                try {
+                    // Update the authStatus in the user_table
+                    const { data, error } = await connection.from('user_table')
+                    .update({ authStatus: 'Off' })
+                    .eq('uscEmail', uscEmail);
+
+                    if (error) {
+                    console.error(error);
+                    alert('Error updating auth status. Please try again later.');
+                    } else {
+                    // Redirect to the login page
+                    alert("You have been successfully Signed out!");
+                    window.location.href = '../loginpage/login.html';
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('An error occurred while updating auth status. Please try again later.');
+                }
+            }
     </script>
 </body>
 </html>
