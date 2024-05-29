@@ -118,7 +118,8 @@ nav {
     position: relative;
     display: flex;
     align-items: center;
-    bottom: 50px;
+    padding-top: 2%;
+    padding-bottom: 3%;
 }
 
 /* Nav Bar */
