@@ -4,6 +4,15 @@ body, h1, h2, ul, li {
     padding: 0;
   }
   
+  h2 {
+    font-size: 32px;
+    background-color: #11b35d;
+    color: white;
+    padding: 15px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
   /* Basic styling */
   body {
     font-family: 'Inter';
@@ -113,4 +122,216 @@ body, h1, h2, ul, li {
 .socialIcons a:hover i {
     color: white;
     transition: 0.3s;
+}
+
+#partyListContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+#positionContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+#userDataContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+#candidateContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+
+#createPartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createPartyButton:hover {
+    background-color: #FBBF16;
+}
+#updatePartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updatePartyButton:hover {
+    background-color: #FBBF16;
+}
+#deletePartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deletePartyButton:hover {
+    background-color: #fb1616;
+}
+
+#createPositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createPositionButton:hover {
+    background-color: #FBBF16;
+}
+#updatePositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updatePositionButton:hover {
+    background-color: #FBBF16;
+}
+#deletePositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deletePositionButton:hover {
+    background-color: #fb1616;
+}
+
+#updateUserButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updateUserButton:hover {
+    background-color: #FBBF16;
+}
+#deleteUserButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deleteUserButton:hover {
+    background-color: #fb1616;
+}
+
+#createCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createCandidateButton:hover {
+    background-color: #FBBF16;
+}
+#updateCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updateCandidateButton:hover {
+    background-color: #FBBF16;
+}
+#deleteCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deleteCandidateButton:hover {
+    background-color: #fb1616;
 }
