@@ -575,3 +575,70 @@ img.USClogo {
 .accBox button:hover {
     background-color: #FBBF16;
 }
+
+.candidate-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: #11b35d;
+    color: #FBBF16;
+    display: inline-block;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    box-sizing: border-box;
+    z-index: 2;
+    margin: 15px;
+}
+.vote-button {
+    width: 70%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: #11b35d;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.vote-button:hover {
+    background-color: #FBBF16;
+}
+
+.varea{
+    margin-left: 500px;
+    margin-top: 75px;
+}
+.partylists{
+    display: block;
+}
+.candidates{
+    display: block;
+    z-index: 2;
+}
+.voteheader{
+    background-color: #11b35d;
+    color: white;
+    padding: 15px 16px;
+    border-radius: 10px;
+    font-size: 40px;
+}
+
+.party-lists h2{
+    background-color: #11b35d;
+    color: white;
+    padding: 15px 16px;
+    border-radius: 10px;
+    font-size: 40px;
+}
+
+.party-box{
+    margin: 10px;
+    background-color: #11b35d;
+    color: #FBBF16;
+    border-radius: 10px;
+    border: none;
+    font-size: 32px;
+    padding: 15px;
+    display: inline;
+}

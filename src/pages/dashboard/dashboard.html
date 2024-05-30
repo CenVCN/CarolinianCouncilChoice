@@ -87,7 +87,19 @@
     </section>
 
     <section id="vote" class="content">
-        <p>*Voting page</p>
+        <div class="varea">
+            <div class="partlists">
+                <h1 class="voteheader">Cast Your Vote</h1>
+                <div class="party-lists">
+                    <h2>Party Lists</h2>
+                    <div id="party-list-container"></div>
+                </div>
+            </div>
+            <div class="candidates">
+                <h1 class="voteheader">Candidate List</h1>
+                <div id="candidate-list"></div>
+            </div>
+        </div>
     </section>
 
     <section id="settings" class="content">
@@ -160,80 +172,99 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c';
         const connection = createClient(supabaseUrl, supabaseKey);
 
-                // Function to handle user sign-in
-        async function signInUser(email, password) {
-        try {
-            const { user, error } = await connection.auth.signInWithPassword({
-            email: email,
-            password: password,
-            });
-
-            if (error) {
-            console.error('Error signing in:', error);
-            } else {
-            console.log('User signed in:', user);
-            // Fetch user data after successful sign-in
-            fetchUserData();
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-        }
-
-        // Function to fetch user data
-        async function fetchUserData() {
-        const { data: { user } } = await connection.auth.getUser();
-
-        if (user) {
-            try {
-            // Fetch the user's data from the database
+        // Function to fetch and display candidates
+        async function fetchAndDisplayCandidates() {
+            console.log('fetchAndDisplayCandidates called'); // Debugging statement
             const { data, error } = await connection
-                .from('user_table')
-                .select('firstName, lastName, userType, voteStatus')
-                .eq('user_id', user.id)
-                .single();
+                .from('candidates')
+                .select('candidateid, firstName, lastName, candidateDescription');
 
             if (error) {
-                console.error('Error fetching user data:', error);
-            } else {
-                // Update the respective elements with the fetched data
-                const userNameElement = document.querySelector('.userName');
-                userNameElement.textContent = `${data.firstName} ${data.lastName}`;
-
-                const userTypeElement = document.querySelector('.userType');
-                userTypeElement.textContent = data.userType;
-
-                const userVotingStatusElement = document.querySelector('.userVotingStatus');
-                userVotingStatusElement.textContent = data.voteStatus;
+                console.error('Error fetching candidates:', error);
+                return;
             }
-            } catch (error) {
-            console.error('Error:', error);
+
+            console.log('Data fetched:', data); // Debugging statement
+            const candidateList = document.getElementById('candidate-list');
+            candidateList.innerHTML = ''; // Clear existing candidates
+
+            data.forEach(candidate => {
+                const candidateBox = document.createElement('div');
+                candidateBox.className = 'candidate-box';
+
+                const name = document.createElement('h2');
+                name.textContent = `${candidate.firstName} ${candidate.lastName}`;
+                candidateBox.appendChild(name);
+
+                const description = document.createElement('p');
+                description.textContent = candidate.candidateDescription;
+                candidateBox.appendChild(description);
+
+                const voteButton = document.createElement('button');
+                voteButton.textContent = 'Vote';
+                voteButton.className = 'vote-button';
+                voteButton.onclick = () => registerVote(candidate.candidateid, voteButton);
+                candidateBox.appendChild(voteButton);
+
+                candidateList.appendChild(candidateBox);
+            });
+        }
+
+        // Function to register a vote
+        async function registerVote(candidateId, button) {
+            const { data, error } = await connection
+                .from('votes')
+                .insert([{ candidate_id: candidateId }]);
+
+            if (error) {
+                console.error('Error registering vote:', error);
+                alert('An error occurred while voting. Please try again.');
+                return;
             }
-        } else {
-            console.log('User is not authenticated');
-        }
-        }
 
-                // Add event listener to the form
-        const loginForm = document.querySelector('form');
-        loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent the default form submission
-
-        const emailInput = document.querySelector('input[name="email"]');
-        const passwordInput = document.querySelector('input[name="password"]');
-
-        const email = emailInput.value;
-        const password = passwordInput.value;
-
-        // Validate if all fields are filled out
-        if (!email || !password) {
-            alert('Please fill out all fields.');
-            return;
+            // Disable the vote button and show confirmation
+            button.textContent = 'Voted';
+            button.disabled = true;
         }
 
-        // Call the signInUser function with the user's email and password
-        await signInUser(email, password);
+        // Ensure the function runs after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayCandidates);
+
+        async function fetchPartyLists() {
+    try {
+        console.log('Fetching party lists...');
+        const { data, error } = await connection.from('parties').select('*');
+        if (error) throw error;
+
+        console.log('Party data:', data);
+
+        // Clear the party-list-container before populating it
+        const partyListContainer = document.getElementById('party-list-container');
+        partyListContainer.innerHTML = '';
+
+        // Populate the party-list-container with party names
+        data.forEach(party => {
+            const partyElement = document.createElement('div');
+            partyElement.className = 'party-box';
+            partyElement.textContent = party.partyname;
+            partyElement.addEventListener('click', () => {
+                selectedPartyId = party.partyid;
+                fetchCandidates(party.partyid);
+            });
+            partyListContainer.appendChild(partyElement);
         });
+
+        console.log('Party lists fetched and displayed successfully.');
+    } catch (error) {
+        console.error('Error fetching party lists:', error);
+        alert('Error fetching party lists. Please try again later.');
+    }
+}
+// Run the functions when the page is loaded
+window.addEventListener("load", fetchPartyLists);
+document.addEventListener('DOMContentLoaded', fetchCandidates);
     </script>
-</body>
+
+
+    </body>
 </html>
