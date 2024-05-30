@@ -84,7 +84,7 @@
                 partyListContainer.innerHTML = '';
                 data.forEach(party => {
                     const partyElement = document.createElement('div');
-                    partyElement.innerHTML = `<h3>${party.partyname}</h3><p>${party.partydescription}</p>`;
+                    partyElement.innerHTML = `<h3>${party.partyname}</h3><p>${party.partydescription}</p><hr>`;
                     partyListContainer.appendChild(partyElement);
                 });
             } catch (error) {
